@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SplashScreen extends StatelessWidget {
+import '../../resources/app_images.dart';
+import '../common/helpers/toast_mixin.dart';
+import 'bloc/splash_cubit.dart';
+
+class SplashScreen extends StatelessWidget with ToastMixin {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return BlocListener<SplashCubit, SplashState>(
+      listener: (context, state) {
+        if (state is SplashFailed) showErrorToast(context, state.error);
+      },
+      child: Scaffold(
+        body: Center(child: Image.asset(AppImages.logo)),
+      ),
+    );
   }
 }

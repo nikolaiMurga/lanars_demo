@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'data/repo_impl/auth_repo_impl.dart';
@@ -11,5 +12,9 @@ void main() {
   final SecureStorage secureStorage = SecureStorage(flutterSecureStorage);
   final AuthRepo authRepo = AuthRepoImpl(secureStorage);
 
-  runApp(const LanarsDemoApp());
+  runApp(MultiBlocProvider(
+      providers: [
+        RepositoryProvider<AuthRepo>(create: (context) => authRepo),
+      ],
+      child: const LanarsDemoApp()));
 }
