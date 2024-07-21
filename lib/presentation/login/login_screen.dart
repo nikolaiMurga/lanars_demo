@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lanars_demo/presentation/common/widgets/active_button.dart';
 import 'package:lanars_demo/presentation/common/widgets/email_field.dart';
@@ -19,6 +20,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailFocus = FocusNode();
   final _passFocus = FocusNode();
 
+  void checkValidation() {
+    if (_formKey.currentState!.validate()) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Form(
           key: _formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -36,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 44.0),
-                child: ActiveButton(onPressed: () {}, text: AppStrings.login, isActive: true),
+                child: ActiveButton(onPressed: () => checkValidation(), text: AppStrings.login, isActive: true),
               ),
             ],
           ),

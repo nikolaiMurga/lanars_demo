@@ -4,12 +4,10 @@ import '../../../resources/app_strings.dart';
 class PasswordTextField extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
-  // final ValueChanged<String>? onFieldSubmitted;
 
   const PasswordTextField({
     required this.controller,
     required this.focusNode,
-    // this.onFieldSubmitted,
     super.key,
   });
 
@@ -18,7 +16,6 @@ class PasswordTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, height: 1.5),
-      autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) => _passwordValidator(value),
       focusNode: focusNode,
       onFieldSubmitted: (v) => focusNode.unfocus(),

@@ -18,7 +18,6 @@ class EmailField extends StatelessWidget {
       cursorColor: Theme.of(context).primaryColor,
       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, height: 1.5),
       keyboardType: TextInputType.text,
-      // autovalidateMode: AutovalidateMode.onUserInteraction,
       onFieldSubmitted: onFieldSubmitted,
       validator: (value) => _validator(value),
       decoration: InputDecoration(
