@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:lanars_demo/domain/repo/auth_repo.dart';
 import 'package:lanars_demo/presentation/common/helpers/app_navigator.dart';
@@ -9,6 +8,7 @@ import '../../resources/app_strings.dart';
 
 class HomePage extends StatelessWidget {
   final AuthRepo _authRepo;
+
   const HomePage(this._authRepo, {super.key});
 
   @override
