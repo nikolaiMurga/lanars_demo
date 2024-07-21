@@ -23,8 +23,9 @@ class SecureStorage {
     }
   }
 
-  Future<void> clearAccessToken() async {
+  Future<bool> clearAccessToken() async {
     await _storage.delete(key: _accessTokenKey);
+    return true;
   }
 
   // Delete tokens

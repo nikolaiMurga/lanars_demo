@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../../resources/app_colors.dart';
 import '../../../resources/app_images.dart';
 import '../../../resources/app_strings.dart';
 import '../../../resources/app_text_styles.dart';
+import '../../../resources/app_theme.dart';
 
 mixin ToastMixin {
   showErrorToast(BuildContext context, String message) {
@@ -15,8 +15,8 @@ mixin ToastMixin {
         type: AppStrings.errorType,
         message: message,
         icon: AppImages.errorToastIcon,
-        color: AppColors.red,
-        backgroundColor: AppColors.lightRed,
+        color: AppTheme.red,
+        backgroundColor: AppTheme.lightRed,
         typeStyle: AppTextStyles.red16w600,
         messageStyle: AppTextStyles.red14w400,
       ),
