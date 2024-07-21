@@ -13,6 +13,7 @@ class SplashCubit extends Cubit<SplashState> {
   Future<void> checkLogin() async {
     emit(SplashLoading());
     try {
+      await Future.delayed(const Duration(seconds: 2));
       final hasToken = await _authRepo.readAccessToken();
       hasToken ? emit(LoggedIn()) : emit(LoggedOut());
     } catch (e) {

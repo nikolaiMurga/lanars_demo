@@ -8,6 +8,7 @@ import 'domain/repo/auth_repo.dart';
 import 'lanars_demo_app.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   const FlutterSecureStorage flutterSecureStorage = FlutterSecureStorage();
   final SecureStorage secureStorage = SecureStorage(flutterSecureStorage);
   final AuthRepo authRepo = AuthRepoImpl(secureStorage);

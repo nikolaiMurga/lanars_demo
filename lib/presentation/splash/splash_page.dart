@@ -10,7 +10,7 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SplashCubit(RepositoryProvider.of<AuthRepo>(context))..checkLogin(),
+      create: (_) => SplashCubit(RepositoryProvider.of<AuthRepo>(context))..checkLogin(),
       child: const SplashScreen(),
     );
   }
