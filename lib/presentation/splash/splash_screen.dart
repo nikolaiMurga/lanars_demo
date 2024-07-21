@@ -15,6 +15,7 @@ class SplashScreen extends StatelessWidget with ToastMixin {
       listener: (context, state) {
         if (state is SplashFailed) showErrorToast(context, state.error);
         if (state is LoggedOut) AppNavigator().goToLogin();
+        if (state is LoggedIn) AppNavigator().goToLogin();
       },
       child: Scaffold(
         body: Center(child: Image.asset(AppImages.logo)),

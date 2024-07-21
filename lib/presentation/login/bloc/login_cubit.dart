@@ -1,22 +1,32 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lanars_demo/data/network/requests/login_request.dart';
 
-import '../../../domain/repo/auth_repo.dart';
+import '../../../domain/repo/repo.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  final AuthRepo _authRepo;
+  final Repo _repo;
 
-  LoginCubit(this._authRepo) : super(LoginInitial());
+  LoginCubit(this._repo) : super(LoginInitial());
 
   bool isActiveUI = true;
 
-  Future<void> login() async {
+  Future<void> login({required String email, required String password}) async {
     isActiveUI = false;
-    emit(LoginLoading());
-    await Future.delayed(Duration(seconds: 5));
-    isActiveUI = true;
-    emit(LoginInitial());
+    try {
+      emit(LoginLoading());
+      await Future.delayed(const Duration(seconds: 2));
+      final request = LoginRequest(email: email, password: password);
+      final user = await _repo.login(request: request);
+      print(user.name);
+      print(user.email);
+      print(user.avatar);
+      isActiveUI = true;
+      emit(LoginInitial());
+    } catch (e){
+      emit(LoginFailed(error: e.toString()));
+    }
   }
 }

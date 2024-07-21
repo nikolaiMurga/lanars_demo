@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lanars_demo/presentation/common/widgets/active_button.dart';
@@ -25,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void checkValidation() {
     if (_formKey.currentState!.validate()) {
-      _cubit.login();
+      _cubit.login(email: _emailController.text, password: _passController.text);
     }
   }
 
