@@ -10,5 +10,13 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit(this._authRepo) : super(LoginInitial());
 
+  bool isActiveUI = true;
 
+  Future<void> login() async {
+    isActiveUI = false;
+    emit(LoginLoading());
+    await Future.delayed(Duration(seconds: 5));
+    isActiveUI = true;
+    emit(LoginInitial());
+  }
 }

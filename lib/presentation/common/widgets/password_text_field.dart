@@ -4,11 +4,12 @@ import '../../../resources/app_strings.dart';
 class PasswordTextField extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
+  final bool enabled;
 
   const PasswordTextField({
     required this.controller,
     required this.focusNode,
-    super.key,
+    super.key, required this.enabled,
   });
 
   @override
@@ -24,6 +25,7 @@ class PasswordTextField extends StatelessWidget {
         labelText: AppStrings.password,
         hintText: AppStrings.enterPassword,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+        enabled: enabled,
       ),
     );
   }

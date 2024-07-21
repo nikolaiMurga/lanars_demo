@@ -7,8 +7,9 @@ class EmailField extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
   final ValueChanged<String>? onFieldSubmitted;
+  final bool enabled;
 
-  const EmailField({required this.onFieldSubmitted,required this.controller, required this.focusNode, super.key});
+  const EmailField({required this.onFieldSubmitted,required this.controller, required this.focusNode, super.key, required this.enabled});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class EmailField extends StatelessWidget {
         hintText: AppStrings.enterEmailAddress,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
       ),
+      enabled: enabled,
     );
   }
 
