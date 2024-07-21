@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lanars_demo/presentation/common/helpers/app_navigator.dart';
 import 'package:lanars_demo/presentation/common/widgets/active_button.dart';
 import 'package:lanars_demo/presentation/common/widgets/email_field.dart';
 import 'package:lanars_demo/presentation/common/widgets/password_text_field.dart';
@@ -30,31 +31,37 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: BlocBuilder<LoginCubit, LoginState>(
-          builder: (context, state) => Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                EmailField(
-                  controller: _emailController,
-                  focusNode: _emailFocus,
-                  onFieldSubmitted: (v) => _passFocus.requestFocus(),
-                  enabled: _cubit.isActiveUI,
+    return BlocListener<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state is LoginSucceed) AppNavigator().goToHomePage(context);
+      },
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: BlocBuilder<LoginCubit, LoginState>(
+            builder: (context, state) =>
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      EmailField(
+                        controller: _emailController,
+                        focusNode: _emailFocus,
+                        onFieldSubmitted: (v) => _passFocus.requestFocus(),
+                        enabled: _cubit.isActiveUI,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 36.0),
+                        child: PasswordTextField(controller: _passController, focusNode: _passFocus, enabled: _cubit.isActiveUI),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 44.0),
+                        child: ActiveButton(onPressed: () => checkValidation(), text: AppStrings.login, isActive: _cubit.isActiveUI),
+                      ),
+                    ],
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 36.0),
-                  child: PasswordTextField(controller: _passController, focusNode: _passFocus, enabled: _cubit.isActiveUI),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 44.0),
-                  child: ActiveButton(onPressed: () => checkValidation(), text: AppStrings.login, isActive: _cubit.isActiveUI),
-                ),
-              ],
-            ),
           ),
         ),
       ),

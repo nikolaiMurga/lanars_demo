@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lanars_demo/domain/repo/auth_repo.dart';
+import 'package:lanars_demo/presentation/home/home_page.dart';
 
 import '../../login/login_page.dart';
 
@@ -31,4 +34,6 @@ class AppNavigator {
   }
 
   goToLogin() => pushReplaceTo(const LoginPage());
+
+  goToHomePage(BuildContext context) => pushReplaceTo(HomePage(RepositoryProvider.of<AuthRepo>(context)));
 }

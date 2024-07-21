@@ -17,14 +17,14 @@ class LoginCubit extends Cubit<LoginState> {
     isActiveUI = false;
     try {
       emit(LoginLoading());
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       final request = LoginRequest(email: email, password: password);
       final user = await _repo.login(request: request);
       print(user.name);
       print(user.email);
       print(user.avatar);
       isActiveUI = true;
-      emit(LoginInitial());
+      emit(LoginSucceed());
     } catch (e){
       emit(LoginFailed(error: e.toString()));
     }

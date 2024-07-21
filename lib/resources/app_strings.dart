@@ -9,4 +9,5 @@ class AppStrings {
   static const passValidation = 'Should contain a-z, A-Z, 0-9';
   static const password = 'Password';
   static const enterPassword = 'Enter your password';
+  static const logout = 'Log out';
 }

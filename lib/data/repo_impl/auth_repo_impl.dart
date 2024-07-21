@@ -16,4 +16,6 @@ class AuthRepoImpl extends AuthRepo {
     if (token == null) return false;
     return true;
   }
+
+  Future<bool> deleteToken() async => _secureStorage.clearAccessToken();
 }
