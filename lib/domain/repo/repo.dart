@@ -3,4 +3,6 @@ import '../models/user_model.dart';
 
 abstract class Repo {
   Future<UserModel> login({required LoginRequest request});
+  Future<UserModel> getUser();
+  Future<void> logOut();
 }
