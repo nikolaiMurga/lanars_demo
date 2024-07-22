@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:lanars_demo/data/repo_impl/local_repo.dart';
 
 import 'data/network/api_client.dart';
 import 'data/network/api_client_impl.dart';
@@ -23,7 +24,8 @@ void main() async {
   final ApiClient apiClient = ApiClientImpl(dio);
   final NetworkRepo networkRepo = NetworkRepo(apiClient);
   final UserMapper userMapper = UserMapper();
-  final Repo repo = RepoImpl(networkRepo, authRepo, userMapper);
+  final LocalRepo localRepo = LocalRepo();
+  final Repo repo = RepoImpl(networkRepo, authRepo, userMapper, localRepo);
 
   runApp(MultiBlocProvider(providers: [
     RepositoryProvider<AuthRepo>(create: (context) => authRepo),

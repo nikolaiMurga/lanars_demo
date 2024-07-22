@@ -5,19 +5,25 @@ import 'package:lanars_demo/domain/repo/repo.dart';
 
 import '../../domain/mappers/user_mapper.dart';
 import '../network/requests/login_request.dart';
+import 'local_repo.dart';
 
 class RepoImpl extends Repo {
   final AuthRepo _authRepo;
   final NetworkRepo _networkRepo;
   final UserMapper _userMapper;
+  final LocalRepo _localRepo;
 
-  RepoImpl(this._networkRepo, this._authRepo, this._userMapper);
+  RepoImpl(this._networkRepo, this._authRepo, this._userMapper, this._localRepo);
 
   @override
   Future<UserModel> login({required LoginRequest request}) async {
     final userDto = await _networkRepo.login(request: request);
-    final user = _userMapper.fromDto(userDto);
+    final userModel = _userMapper.fromDto(userDto);
+
+    final userEntity = _userMapper.fromModel(userModel);
+    await _localRepo.saveUser(userEntity);
     await _authRepo.saveAccessToken(token: true.toString());
-    return user;
+
+    return userModel;
   }
 }
