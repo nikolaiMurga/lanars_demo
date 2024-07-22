@@ -17,12 +17,18 @@ class LocalRepo {
     }
   }
 
-  Future<UserEntity> getSavedFacts() async {
+  Future<UserEntity> getUser() async {
     try {
       final entity = await Hive.box(HiveBoxes.userBox).get(_userKey);
-      // final model = _userMapper.fromEntity(entity);
-      // return model;
       return entity;
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  Future<void> deleteUser() async {
+    try{
+      await Hive.box(HiveBoxes.userBox).delete(_userKey);
     } catch (error) {
       rethrow;
     }

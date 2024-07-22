@@ -10,4 +10,6 @@ class AppStrings {
   static const password = 'Password';
   static const enterPassword = 'Enter your password';
   static const logout = 'Log out';
+  static const cancel = 'Cancel';
+  static const areYouSureLogOut = 'Are you sure you want to logout ?';
 }

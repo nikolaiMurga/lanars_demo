@@ -26,4 +26,17 @@ class RepoImpl extends Repo {
 
     return userModel;
   }
+
+  @override
+  Future<UserModel> getUser() async{
+    final entity = await _localRepo.getUser();
+    final model = _userMapper.fromEntity(entity);
+    return model;
+  }
+
+  @override
+  Future<void> logOut() async {
+    await _localRepo.deleteUser();
+    await _authRepo.deleteToken();
+  }
 }

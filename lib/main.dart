@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:lanars_demo/data/repo_impl/local_repo.dart';
 
+import 'data/db/persistence_helper.dart';
 import 'data/network/api_client.dart';
 import 'data/network/api_client_impl.dart';
 import 'data/repo_impl/auth_repo_impl.dart';
@@ -17,6 +18,7 @@ import 'lanars_demo_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await PersistenceHelper.initHive();
   const FlutterSecureStorage flutterSecureStorage = FlutterSecureStorage();
   final SecureStorage secureStorage = SecureStorage(flutterSecureStorage);
   final AuthRepo authRepo = AuthRepoImpl(secureStorage);
